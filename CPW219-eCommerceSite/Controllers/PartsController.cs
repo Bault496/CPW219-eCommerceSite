@@ -1,6 +1,7 @@
 ﻿using CPW219_eCommerceSite.Data;
 using CPW219_eCommerceSite.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CPW219_eCommerceSite.Controllers
 {
@@ -10,6 +11,12 @@ namespace CPW219_eCommerceSite.Controllers
         public PartsController(ComputerPartContext context)
         {
             _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            List<Part> parts = await (from part in _context.Parts select part).ToListAsync();
+            return View(parts);
         }
 
         [HttpGet]
