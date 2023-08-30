@@ -48,5 +48,17 @@ namespace CPW219_eCommerceSite.Controllers
             }
             return View(partToEdit);
         }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Part partModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Parts.Update(partModel);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+            return View(partModel);
+        }
     }
 }
