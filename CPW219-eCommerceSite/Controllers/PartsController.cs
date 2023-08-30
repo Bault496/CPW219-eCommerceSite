@@ -38,5 +38,15 @@ namespace CPW219_eCommerceSite.Controllers
 
             return View(part);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            Part partToEdit = await _context.Parts.FindAsync(id);
+            if (partToEdit == null)
+            {
+                return NotFound();
+            }
+            return View(partToEdit);
+        }
     }
 }
