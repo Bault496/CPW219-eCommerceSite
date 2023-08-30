@@ -18,12 +18,12 @@ namespace CPW219_eCommerceSite.Controllers
             return View(); 
         }
         [HttpPost]
-        public IActionResult Create(Part part)
+        public async Task<IActionResult> Create(Part part)
         {
             if (ModelState.IsValid)
             {
                 _context.Parts.Add(part); // prepares Insert
-                _context.SaveChanges(); // executes pending insert
+                await _context.SaveChangesAsync(); // executes pending insert
                 //Show Success Message
                 ViewData["message"] = $"{part.Name} was added sucessfully!";
                 return View();
