@@ -1,15 +1,15 @@
-﻿@model CPW219_eCommerceSite.Models.RegisterViewModel
+﻿@model CPW219_eCommerceSite.Models.LoginViewModel
 
 @{
-    ViewData["Title"] = "Register as new Member";
+    ViewData["Title"] = "Log in";
 }
 
-<h1>Register</h1>
+<h1>Log in</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Register">
+        <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -17,27 +17,20 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmEmail" class="control-label"></label>
-                <input asp-for="ConfirmEmail" class="form-control" />
-                <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create Account" class="btn btn-primary" />
+                <input type="submit" value="Log in" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
