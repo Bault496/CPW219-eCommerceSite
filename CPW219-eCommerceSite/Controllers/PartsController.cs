@@ -56,6 +56,7 @@ namespace CPW219_eCommerceSite.Controllers
                 _context.Parts.Update(partModel);
                 await _context.SaveChangesAsync();
 
+                TempData["Message"] = $"{partModel.Name} was updated successfully!";
                 return RedirectToAction("Index");
             }
             return View(partModel);
