@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CPW219_eCommerceSite.Models.Part>
+﻿@model PartCatalogViewModel
 
 @{
     ViewData["Title"] = "Part Catalog";
@@ -18,25 +18,25 @@
     <a asp-action="Create" asp-controller="Parts">Create New</a>
 </p>
 
-@if (Model.Count() != 0)
+@if (Model.Parts.Count() != 0)
 {
     <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.PartId)
+                    @Html.DisplayNameFor(model => model.Parts[0].PartId)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayNameFor(model => model.Parts[0].Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Price)
+                    @Html.DisplayNameFor(model => model.Parts[0].Price)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model) {
+    @foreach (var item in Model.Parts) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.PartId)
@@ -60,4 +60,8 @@
 else
 {
     <h2>No Products on this page.</h2>
+}
+
+@for (int i = 1; i <= Model.LastPage; i++){
+<p>@i</p>
 }

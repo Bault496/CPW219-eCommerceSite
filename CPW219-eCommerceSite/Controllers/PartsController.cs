@@ -19,12 +19,19 @@ namespace CPW219_eCommerceSite.Controllers
             const int PageOffset = 1;
             
             int currPage = id ?? 1; // set currPage to id unless it's null then it's 1.
+
+            int totalNumOfProdcuts = await _context.Parts.CountAsync();
+            double maxNumPages = Math.Ceiling((double)totalNumOfProdcuts / NumPartsToDisplayPerPage);
+            int lastPage = Convert.ToInt32(maxNumPages);
+
             List<Part> parts = await (from part in _context.Parts 
                                       select part)
                                       .Skip(NumPartsToDisplayPerPage * (currPage - PageOffset))
                                       .Take(NumPartsToDisplayPerPage)
                                       .ToListAsync();
-            return View(parts);
+
+            PartCatalogViewModel catalogModel = new(parts, lastPage, currPage);
+            return View(catalogModel);
         }
 
         [HttpGet]
