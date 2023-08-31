@@ -26,4 +26,13 @@ namespace CPW219_eCommerceSite.Models
         public double Price { get; set; }
 
     }
+    /// <summary>
+    /// Single part added to the user's cart
+    /// </summary>
+    public class CartPartViewModel
+    {
+        public int PartId { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+    }
 }

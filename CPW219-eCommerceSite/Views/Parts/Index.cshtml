@@ -51,6 +51,7 @@
                     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.PartId">Edit</a>
                     <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.PartId">Details</a>
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PartId">Delete</a>
+                    <a class="btn btn-success" asp-controller="Cart" asp-action="Add" asp-route-id="@item.PartId">Add to Cart</a>
                 </td>
             </tr>
     }
