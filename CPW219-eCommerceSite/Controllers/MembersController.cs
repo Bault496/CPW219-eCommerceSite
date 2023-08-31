@@ -51,6 +51,7 @@ namespace CPW219_eCommerceSite.Controllers
                             select member).SingleOrDefault();
                 if (m != null)
                 {
+                    HttpContext.Session.SetString("Email", logModel.Email);
                     return RedirectToAction("Index", "Home");
                 }
 
