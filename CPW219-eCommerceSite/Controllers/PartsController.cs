@@ -13,9 +13,17 @@ namespace CPW219_eCommerceSite.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            List<Part> parts = await (from part in _context.Parts select part).ToListAsync();
+            const int NumPartsToDisplayPerPage = 3;
+            const int PageOffset = 1;
+            
+            int currPage = id ?? 1; // set currPage to id unless it's null then it's 1.
+            List<Part> parts = await (from part in _context.Parts 
+                                      select part)
+                                      .Skip(NumPartsToDisplayPerPage * (currPage - PageOffset))
+                                      .Take(NumPartsToDisplayPerPage)
+                                      .ToListAsync();
             return View(parts);
         }
 
