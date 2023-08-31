@@ -88,5 +88,15 @@ namespace CPW219_eCommerceSite.Controllers
             TempData["Message"] = "This part was already deleted.";
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            Part partDetails = await _context.Parts.FindAsync(id);
+            if (partDetails == null)
+            {
+                return NotFound();
+            }
+            return View(partDetails);
+        }
     }
 }
