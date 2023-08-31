@@ -61,5 +61,32 @@ namespace CPW219_eCommerceSite.Controllers
             }
             return View(partModel);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Part partToDelete = await _context.Parts.FindAsync(id);
+            if (partToDelete == null)
+            {
+                return NotFound();
+            }
+            return View(partToDelete);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Part partToDelete = await _context.Parts.FindAsync(id);
+
+            if (partToDelete != null)
+            {
+                _context.Parts.Remove(partToDelete);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = partToDelete.Name + " was deleted successfully!";
+                return RedirectToAction("Index");
+            }
+
+            TempData["Message"] = "This part was already deleted.";
+            return RedirectToAction("Index");
+        }
     }
 }
